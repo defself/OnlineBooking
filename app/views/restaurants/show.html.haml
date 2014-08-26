@@ -1,0 +1,8 @@
+%h1= @restaurant.name
+
+%table{border: 1}
+  %tbody
+    %tr
+      - @tables.each do |table|
+        %td
+          = link_to "Table ##{table.number}", new_restaurant_table_reservation_path(@restaurant, table)

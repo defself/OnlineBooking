@@ -1,0 +1,6 @@
+%h1= pluralize @restaurants.size, "Restaurant"
+
+%ul
+  - @restaurants.each do |r|
+    %li
+      = link_to r.name, restaurant_path(r)
