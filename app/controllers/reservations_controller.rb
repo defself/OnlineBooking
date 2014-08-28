@@ -1,10 +1,13 @@
 class ReservationsController < ApplicationController
   def index
-    @reservations = Reservation.all
+    @restaurant = Table.find_by_id(params[:restaurant_id])
+    @table = Table.find_by_id(params[:table_id])
+    @reservations = @table.reservations
   end
 
   def new
     @reservation = Reservation.new
+    @table = Table.find_by_id(params[:table_id])
   end
 
   def create
@@ -22,11 +25,17 @@ class ReservationsController < ApplicationController
   end
 
   def edit
+    @reservation = Reservation.find_by_id(params[:id])
   end
 
   def update
+    @reservation = Reservation.find_by_id(params[:id])
+    @reservation.start_time = params[:reservation][:start_time]
+    @reservation.end_time   = params[:reservation][:end_time]
+    redirect_to :back if @reservation.save
   end
 
   def destroy
+    redirect_to restaurants_path if Reservation.find_by_id(params[:id]).destroy
   end
 end

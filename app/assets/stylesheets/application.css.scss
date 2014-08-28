@@ -15,10 +15,10 @@
  */
 
 #restaurant-tables {
-  .reserved {
-    background-color: tomato;
-  }
-  .free {
+  td {
     background-color: greenyellow;
+    &[data-reserved] {
+      background-color: tomato;
+    }
   }
 }

@@ -1,8 +1,10 @@
-%h1 Make New Reservation
+%h1 Book a Table ##{@table.number}
 
 = form_for(@reservation, url: {action: "create"}) do
   = label_tag(:start_time)
   = time_field(:reservation, :start_time)
+  %br
   = label_tag(:end_time)
   = time_field(:reservation, :end_time)
-  = submit_tag("Book Table")
+  %br
+  = submit_tag("Book a Table")
