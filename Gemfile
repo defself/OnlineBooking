@@ -14,6 +14,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 gem 'haml-rails'
+# Helps validate reservation overlaps
+gem 'validates_overlap', '~> 0.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

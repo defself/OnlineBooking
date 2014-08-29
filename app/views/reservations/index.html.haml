@@ -1,4 +1,4 @@
-%h1 Reservations List
+%h1= "Table ##{@table.number} Reservations"
 
 = link_to "New Reservation", new_restaurant_table_reservation_path(@restaurant, @table)
 %br
@@ -9,8 +9,7 @@
     %thead
       %th Start Time
       %th End Time
-      %th
-      %th
+      %th{colspan: 2}
     %tbody
       - @reservations.each do |reserve|
         %tr

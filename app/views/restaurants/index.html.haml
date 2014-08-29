@@ -1,5 +1,7 @@
 %h1= pluralize @restaurants.size, "Restaurant"
 
+= link_to "New Restaurant", new_restaurant_path
+
 %ul
   - @restaurants.each do |r|
     %li

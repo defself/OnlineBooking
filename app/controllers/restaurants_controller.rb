@@ -23,13 +23,4 @@ class RestaurantsController < ApplicationController
       redirect_to new_restaurant_path
     end
   end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
 end

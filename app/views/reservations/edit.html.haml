@@ -1,4 +1,10 @@
 %h1 Edit Reservation
 
-= @reservation.start_time
-= @reservation.end_time
+= form_for(@reservation, url: {action: "update"}) do
+  = label_tag(:start_time)
+  = time_field(:reservation, :start_time)
+  %br
+  = label_tag(:end_time)
+  = time_field(:reservation, :end_time)
+  %br
+  = submit_tag("Update Reservation")

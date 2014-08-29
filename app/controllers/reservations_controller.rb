@@ -17,11 +17,8 @@ class ReservationsController < ApplicationController
     if @reservation.save
       redirect_to restaurants_path
     else
-      redirect_to new_restaurant_reservation_path
+      redirect_to new_restaurant_table_reservation_path
     end
-  end
-
-  def show
   end
 
   def edit
@@ -32,7 +29,11 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find_by_id(params[:id])
     @reservation.start_time = params[:reservation][:start_time]
     @reservation.end_time   = params[:reservation][:end_time]
-    redirect_to :back if @reservation.save
+    if @reservation.save
+      redirect_to restaurants_path
+    else
+      redirect_to :back
+    end
   end
 
   def destroy

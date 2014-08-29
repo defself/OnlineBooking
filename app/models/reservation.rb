@@ -1,12 +1,7 @@
 class Reservation < ActiveRecord::Base
   validates_presence_of :start_time, :end_time, :table_id
-  validate :overbooking
+  validates :start_time, :end_time, overlap: { scope: 'table_id',
+                                               message_content: 'overlaps with Tables other reservation.' }
 
   belongs_to :table
-
-  private
-  def overbooking
-    puts 'checking for overbooking...'
-    # TODO: overlaps validation
-  end
 end
