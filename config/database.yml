@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: onlinebooking_production
-  username: onlinebooking
+  username: postgres
   password: <%= ENV['ONLINEBOOKING_DATABASE_PASSWORD'] %>
