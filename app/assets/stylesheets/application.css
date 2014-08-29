@@ -13,12 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-#restaurant-tables {
-  td {
-    background-color: greenyellow;
-    &[data-reserved] {
-      background-color: tomato;
-    }
-  }
-}
