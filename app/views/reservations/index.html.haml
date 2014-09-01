@@ -1,19 +1,20 @@
-%h1= "Table ##{@table.number} Reservations"
-
-= link_to "New Reservation", new_restaurant_table_reservation_path(@restaurant, @table)
-%br
-%br
+- model_class = Reservation
+%h1= "#{@restaurant.name}'s Table ##{@table.number} (#{@reservations.size})"
 
 - if @reservations.any?
-  %table{border: 1}
-    %thead
-      %th Start Time
-      %th End Time
-      %th{colspan: 2}
+  %table.striped
+    %thead.thead-black
+      %tr
+        %th= model_class.human_attribute_name(:start_time)
+        %th= model_class.human_attribute_name(:end_time)
+        %th Management
     %tbody
-      - @reservations.each do |reserve|
+      - @reservations.each do |reservation|
         %tr
-          %td= reserve.start_time.strftime("%a, %l:%M %p")
-          %td= reserve.end_time.strftime("%a, %l:%M %p")
-          %td= link_to "Correct", action: "edit", id: reserve.id
-          %td= button_to "Cancel", { action: "destroy", id: reserve.id }, method: :delete, data: { confirm: "Are you sure?" }
+          %td= reservation.start_time.strftime("%a, %l:%M %p")
+          %td= reservation.end_time.strftime("%a, %l:%M %p")
+          %td
+            = link_to 'Correct', edit_restaurant_table_reservation_path(@restaurant, @table, reservation), class: 'btn btn-small'
+            = link_to 'Cancel', restaurant_table_reservation_path(@restaurant, @table, reservation), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-small'
+
+= link_to 'Book a Table', new_restaurant_table_reservation_path, class: 'btn'

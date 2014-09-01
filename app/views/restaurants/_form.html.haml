@@ -1,0 +1,9 @@
+= form_for @restaurant, url: { action: action }, html: { class: 'forms' } do |f|
+  %ul
+    %li
+      = f.label :name, class: 'bold'
+      = f.text_field :name
+
+    %li
+      = f.submit nil, class: 'btn'
+      = link_to 'Cancel', root_path, class: 'btn'

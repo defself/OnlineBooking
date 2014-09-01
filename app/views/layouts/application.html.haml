@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title OnlineBookingProject
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    - flash.each do |name, msg|
+      - if msg.respond_to? :join
+        - msg.each do |i|
+          = content_tag :div, i, class: "flash #{name}"
+      - else
+        = content_tag :div, msg, class: "flash #{name}"
+    = yield

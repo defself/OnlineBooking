@@ -1,16 +1,2 @@
-%h1 Create New Restaurant
-
-= form_for(@restaurant, url: {action: "create"}) do
-  = label_tag(:name)
-  = text_field_tag(:name)
-  %br
-  = label_tag(:description)
-  = text_area_tag(:description)
-  %br
-  = label_tag(:address)
-  = text_field_tag(:address)
-  %br
-  = label_tag(:phone)
-  = text_field_tag(:phone)
-  %br
-  = submit_tag("Create a Restaurant")
+%h1 New Restaurant
+= render partial: "form", locals: { action: "create" }

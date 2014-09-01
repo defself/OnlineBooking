@@ -1,8 +1,18 @@
-%h1= pluralize @restaurants.size, "Restaurant"
+- model_class = Restaurant
+%h1= pluralize @restaurants.size, model_class.model_name.human
 
-= link_to "New Restaurant", new_restaurant_path
+- if @restaurants.any?
+  %table.striped
+    %thead.thead-black
+      %tr
+        %th= model_class.human_attribute_name(:name)
+        %th Management
+    %tbody
+      - @restaurants.each do |restaurant|
+        %tr
+          %td= link_to restaurant.name, restaurant_path(restaurant)
+          %td
+            = link_to 'Manage', edit_restaurant_path(restaurant), class: 'btn btn-small'
+            = link_to 'Close', restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-small'
 
-%ul
-  - @restaurants.each do |r|
-    %li
-      = link_to r.name, restaurant_path(r)
+= link_to 'Open new Restaurant', new_restaurant_path, class: 'btn'

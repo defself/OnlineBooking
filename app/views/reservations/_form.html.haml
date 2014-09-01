@@ -1,0 +1,12 @@
+= form_for @reservation, url: { action: action }, html: { class: 'forms' } do |f|
+  %ul
+    %li
+      = f.label :start_time, class: 'bold'
+      = f.time_field :start_time
+    %li
+      = f.label :end_time, class: 'bold'
+      = f.time_field :end_time
+
+    %li
+      = f.submit nil, class: 'btn'
+      = link_to 'Cancel', restaurant_table_reservations_path, class: 'btn'

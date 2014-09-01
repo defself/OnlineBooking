@@ -1,12 +1,17 @@
-%h1= @restaurant.name
+%h1.title= @restaurant.name
 
-= button_to "Add new Table", action: "create", controller: "tables", restaurant_id: @restaurant.id
+= link_to "Add new Table", { action: "create", controller: "tables", restaurant_id: @restaurant.id }, method: :create, class: 'btn'
 
 - if @our_tables.any?
   %h2 Tables
-  %table#restaurant-tables{border: 10}
+  %table#restaurant-tables
     %tbody
       %tr
-        - @our_tables.each do |table|
-          %td{data: {reserved: table.reserved?}}
+        - @our_tables.each_with_index do |table, index|
+          - if (index) % 10 == 0
+            %tr
+          %td{ data: { reserved: table.reserved? } }
             = link_to "Table ##{table.number}", restaurant_table_reservations_path(@restaurant, table)
+
+%div
+  = link_to 'Back', root_path, class: 'btn'
