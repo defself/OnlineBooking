@@ -1,17 +1,43 @@
+body {
+  background: linear-gradient(to top,    rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1)  100%) fixed,
+              linear-gradient(to left,   rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1)  100%) fixed,
+              linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(173, 255, 47, 0.3) 100%) fixed,
+              linear-gradient(to right,  rgba(255, 255, 255, 0) 50%, rgba(255, 99, 71, 0.3)  100%) fixed;
+
+  .page-container {
+    position: relative;
+    padding: 30px;
+    border-top: 5px solid yellowgreen;
+    border-left: 5px solid yellowgreen;
+    border-bottom-left-radius: 80px;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: -5px;
+      right: 0;
+      bottom: 0;
+      border-top: 5px solid tomato;
+      border-right: 5px solid tomato;
+      border-bottom-right-radius: 80px;
+    }
+  }
+}
+
 #restaurant-tables {
   td {
     position: relative;
     opacity: 0.8;
-    background-color: greenyellow;
+    background-color: yellowgreen;
     min-width: 110px;
     text-align: center;
     padding: 30px;
-    border: 5px solid white;
+    border: 5px solid transparent;
     border-radius: 30px;
 
-    &:hover {
-      opacity: 1;
-    }
+    &:hover { opacity: 1; }
 
     a {
       text-decoration: none;
@@ -24,9 +50,7 @@
       line-height: 60px;
       color: white;
 
-      &:hover {
-        color: black;
-      }
+      &:hover { color: black; }
     }
 
     &[data-reserved] {
@@ -42,13 +66,18 @@
   text-align: center;
   font-weight: bold;
   margin-bottom: 2px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
 
   &.alert {
     background-color: tomato;
     color: white;
   }
   &.notice {
-    background-color: greenyellow;
+    background-color: yellowgreen;
     color: black;
   }
 }

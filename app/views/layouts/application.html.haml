@@ -6,10 +6,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    - flash.each do |name, msg|
-      - if msg.respond_to? :join
-        - msg.each do |i|
-          = content_tag :div, i, class: "flash #{name}"
-      - else
+    .page-container
+      - flash.each do |name, msg|
+        - msg = msg.join(" & ") if msg.instance_of? Array
         = content_tag :div, msg, class: "flash #{name}"
-    = yield
+      = yield
