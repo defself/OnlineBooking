@@ -14,8 +14,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer',  platforms: :ruby
 gem 'haml-rails'
-# Helps validate reservation overlaps
-gem 'validates_overlap', '~> 0.3.0'
+
 gem 'kube-rails', '~> 0.3.1'
 
 # Use jquery as the JavaScript library
@@ -29,6 +28,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+gem 'shoulda-matchers'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

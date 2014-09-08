@@ -1,18 +1,34 @@
 require 'spec_helper'
 
 describe Reservation do
-  before do
-    restaurant = FactoryGirl.build(:restaurant)
-    @table = FactoryGirl.create(:table)
-    restaurant.tables << @table
+  let(:restaurant){ create :restaurant }
+  let(:table){ create :table, restaurant: restaurant }
+
+  it 'should have relationships' do
+    should belong_to(:table)
   end
 
-  it "cannot have 2 reservations for the same period of time" do
-    reservation1 = FactoryGirl.create(:reservation, table_id: @table.id)
-    reservation2 = FactoryGirl.build(:reservation, table_id: @table.id, start_time: reservation1.start_time)
+  it 'should have validation' do
+    should validate_presence_of(:start_time)
+    should validate_presence_of(:end_time)
+    should validate_presence_of(:table_id)
+  end
 
-    reservation2.should_not be_valid
-    reservation2.errors[:start_time].should_not be_empty
-    reservation2.errors[:end_time].should be_empty
+  context '#check_overlap' do
+    let(:reservation1){ create :reservation, table_id: table.id }
+
+    let(:reservation2){ build :reservation, table_id: table.id, start_time: reservation1.start_time }
+
+    it 'failed' do
+      reservation2.should_not be_valid
+      reservation2.errors[:overbooking].should include "The table is already booked"
+    end
+
+    it 'success' do
+      reservation2.update_attributes(start_time: Time.now + 2.hours, end_time: Time.now + 3.hours)
+
+      reservation2.should be_valid
+      reservation2.errors[:overbooking].should be_empty
+    end
   end
 end
